@@ -20,6 +20,28 @@ class ViewController: UIViewController {
         return imageView
     }()
     
+    private let previousButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        return button
+    }()
+    
+    private let nextButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("NEXT", for: .normal)
+        button.setTitleColor(.mainRed, for: .normal)
+        return button
+    }()
+    
+    private let pageControl : UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPageIndicatorTintColor = .red
+        pc.pageIndicatorTintColor = .mainRed
+        pc.numberOfPages = 4
+        return pc
+    }()
+    
     let descriptionTextView : UITextView = {
         let descriptionHeader = "Join us for delicious Ramen!"
         let descriptionSubtitle = "\n\n\nThere's a variety of flavors such as shio, miso, and shoyu to choose from."
@@ -39,10 +61,28 @@ class ViewController: UIViewController {
         //needs to addSubview before layout or else 'Unable to activate constraint with anchors'
         view.addSubview(descriptionTextView)
         
+        setupBottomControls()
         layoutSetup()
         
     }
 
+    fileprivate func setupBottomControls() {
+
+        let bottomControlStackView = UIStackView(arrangedSubviews:
+            [previousButton,pageControl,nextButton]
+        )
+        bottomControlStackView.distribution = .fillEqually
+        
+        view.addSubview(bottomControlStackView)
+        bottomControlStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [bottomControlStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+             bottomControlStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+             bottomControlStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+             bottomControlStackView.heightAnchor.constraint(equalToConstant: 50)
+            
+            ])
+    }
     func layoutSetup() {
         let topImageContainerView = UIView()
         
@@ -66,3 +106,6 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIColor {
+    static let mainRed = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+}
