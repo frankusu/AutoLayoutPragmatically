@@ -21,7 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-        let layout = UICollectionViewLayout()
+        // !!! make sure its UICViewFlowLayout instead of incorrect UICViewLayout
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let swipingController = SwipingController(collectionViewLayout: layout)
         
         window?.rootViewController = swipingController

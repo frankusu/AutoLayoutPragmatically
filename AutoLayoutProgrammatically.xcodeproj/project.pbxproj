@@ -14,6 +14,7 @@
 		4E33DC102363C31B00488F66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E33DC0F2363C31B00488F66 /* Assets.xcassets */; };
 		4E33DC132363C31B00488F66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E33DC112363C31B00488F66 /* LaunchScreen.storyboard */; };
 		4E33DC1C236B5DFF00488F66 /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E33DC1B236B5DFF00488F66 /* SwipingController.swift */; };
+		4E33DC1E236BB76E00488F66 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E33DC1D236BB76E00488F66 /* PageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4E33DC122363C31B00488F66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E33DC142363C31B00488F66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E33DC1B236B5DFF00488F66 /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
+		4E33DC1D236BB76E00488F66 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		4E33DC052363C31800488F66 /* AutoLayoutProgrammatically */ = {
 			isa = PBXGroup;
 			children = (
+				4E33DC1D236BB76E00488F66 /* PageCell.swift */,
 				4E33DC062363C31800488F66 /* AppDelegate.swift */,
 				4E33DC1A2368F45000488F66 /* Supporting */,
 				4E33DC0A2363C31800488F66 /* ViewController.swift */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E33DC0B2363C31800488F66 /* ViewController.swift in Sources */,
+				4E33DC1E236BB76E00488F66 /* PageCell.swift in Sources */,
 				4E33DC072363C31800488F66 /* AppDelegate.swift in Sources */,
 				4E33DC092363C31800488F66 /* SceneDelegate.swift in Sources */,
 				4E33DC1C236B5DFF00488F66 /* SwipingController.swift in Sources */,
