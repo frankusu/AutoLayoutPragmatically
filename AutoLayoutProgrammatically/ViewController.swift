@@ -59,9 +59,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //needs to addSubview before layout or else 'Unable to activate constraint with anchors'
-        view.addSubview(descriptionTextView)
+        //view.addSubview(descriptionTextView)
         
-        setupBottomControls()
+        //setupBottomControls()
         layoutSetup()
         
     }

@@ -5,11 +5,21 @@
 //  Created by Frank Su on 2019-10-31.
 //  Copyright © 2019 frankusu. All rights reserved.
 //
+//
 
-import Foundation
 import UIKit
 
 class SwipingController : UICollectionViewController,UICollectionViewDelegateFlowLayout {
+    
+    
+    let pages = [
+        Page(imageName: "ramen_first", descriptionText: "Join us for delcious Ramen!"),
+        Page(imageName: "ramen_second", descriptionText: "Various flavors to choose from."),
+        Page(imageName: "ramen_third", descriptionText: "Add toppings to make a bowl truly yours!")
+    ]
+//    let ramenItems = ["ramen_first","ramen_second","ramen_third"]
+//    let ramenTitleText = ["Join us for delcious Ramen!","Various flavors to choose from.","Add toppings to make a bowl truly yours!"]
+//    let ramenDescription = ["Ramen (拉麺, ラーメン) are pulled noodles that originated from Japan.", "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +39,21 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
     
     //1 numberOfItemsInSection
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        //make pages as many ramen pictures
+        return pages.count
     }
     //2 cellForItemAt
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as! PageCell
         //MARK: -- interview question!!
         //cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
+//        cell.ramenFirstView.image = UIImage(named: ramenItems[indexPath.item])
+//        cell.descriptionTextView.text = ramenTitleText[indexPath.item]
+        
+        let page = pages[indexPath.item]
+        cell.ramenFirstView.image = UIImage(named: page.imageName)
+        cell.descriptionTextView.text = page.descriptionText
+        
         return cell
     }
     //3 collectionViewLayout
