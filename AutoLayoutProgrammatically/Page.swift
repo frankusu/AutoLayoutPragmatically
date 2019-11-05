@@ -10,5 +10,7 @@ import Foundation
 
 struct Page {
     let imageName : String
+    let titleText : String
     let descriptionText : String
+    
 }

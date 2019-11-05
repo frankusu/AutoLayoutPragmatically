@@ -10,8 +10,24 @@ import UIKit
 
 class PageCell : UICollectionViewCell {
     
+    //since class needs everything initialized, we set optional
+    var page : Page? {
+        didSet {
+            //print(page!.imageName)
+            guard let unwrappedPage = page.self else {return}
+            ramenFirstView.image = UIImage(named: unwrappedPage.imageName)
+            
+            let attributedText = NSMutableAttributedString(string: unwrappedPage.titleText, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+            attributedText.append(NSAttributedString(string: "\n\n\n\(unwrappedPage.descriptionText)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)]))
+            
+            descriptionTextView.attributedText = attributedText
+            descriptionTextView.textAlignment = .center
+            
+        }
+    }
+    
     // {} means closure. Need () to call it at end
-    let ramenFirstView : UIImageView = {
+    private let ramenFirstView : UIImageView = {
         // type 'image Literal' to use inline picture
         let imageView = UIImageView(image: #imageLiteral(resourceName: "ramen_first"))
         //allows imageView to use autolayout
@@ -19,7 +35,7 @@ class PageCell : UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    let descriptionTextView : UITextView = {
+    private let descriptionTextView : UITextView = {
     //        let descriptionHeader = "Join us for delicious Ramen!"
     //        let descriptionSubtitle = "\n\n\nThere's a variety of flavors such as shio, miso, and shoyu to choose from."
             var textView = UITextView()

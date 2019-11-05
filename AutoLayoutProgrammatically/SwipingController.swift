@@ -13,9 +13,9 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
     
     
     let pages = [
-        Page(imageName: "ramen_first", descriptionText: "Join us for delcious Ramen!"),
-        Page(imageName: "ramen_second", descriptionText: "Various flavors to choose from."),
-        Page(imageName: "ramen_third", descriptionText: "Add toppings to make a bowl truly yours!")
+        Page(imageName: "ramen_first", titleText: "Join us for delcious Ramen!", descriptionText: "Ramen (拉麺, ラーメン) are pulled noodles in soup broth that originated from Japan."),
+        Page(imageName: "ramen_second", titleText: "Various flavors to choose from.", descriptionText: "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"),
+        Page(imageName: "ramen_third", titleText: "Add toppings to make a bowl truly yours!", descriptionText: "Soft boiled eggs(aji tamago), Chashu (fatty braised pork), Chili Oil, Kikurage and many more" )
     ]
 //    let ramenItems = ["ramen_first","ramen_second","ramen_third"]
 //    let ramenTitleText = ["Join us for delcious Ramen!","Various flavors to choose from.","Add toppings to make a bowl truly yours!"]
@@ -51,8 +51,9 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
 //        cell.descriptionTextView.text = ramenTitleText[indexPath.item]
         
         let page = pages[indexPath.item]
-        cell.ramenFirstView.image = UIImage(named: page.imageName)
-        cell.descriptionTextView.text = page.descriptionText
+        cell.page = page
+//        cell.ramenFirstView.image = UIImage(named: page.imageName)
+//        cell.descriptionTextView.text = page.descriptionText
         
         return cell
     }
