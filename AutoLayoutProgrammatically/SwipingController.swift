@@ -17,14 +17,58 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
         Page(imageName: "ramen_second", titleText: "Various flavors to choose from.", descriptionText: "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"),
         Page(imageName: "ramen_third", titleText: "Add toppings to make a bowl truly yours!", descriptionText: "Soft boiled eggs(aji tamago), Chashu (fatty braised pork), Chili Oil, Kikurage and many more" )
     ]
-//    let ramenItems = ["ramen_first","ramen_second","ramen_third"]
-//    let ramenTitleText = ["Join us for delcious Ramen!","Various flavors to choose from.","Add toppings to make a bowl truly yours!"]
-//    let ramenDescription = ["Ramen (拉麺, ラーメン) are pulled noodles that originated from Japan.", "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"]
+    private let previousButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        return button
+    }()
     
+    private let nextButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("NEXT", for: .normal)
+        button.setTitleColor(.mainRed, for: .normal)
+        button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func handleNext() {
+        print("Trying to go to next page...")
+        //even tho iOS 13 wraps around, this is safe way to ensure it doesn't acces pages that aren't there
+        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1 )
+        let indexPath = IndexPath(item: nextIndex, section: 0)
+        pageControl.currentPage = nextIndex
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    private let pageControl : UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPageIndicatorTintColor = .red
+        pc.pageIndicatorTintColor = .mainRed
+        pc.numberOfPages = 4
+        return pc
+    }()
+    
+    fileprivate func setupBottomControls() {
+
+        let bottomControlStackView = UIStackView(arrangedSubviews:
+            [previousButton,pageControl,nextButton]
+        )
+        bottomControlStackView.distribution = .fillEqually
+        
+        view.addSubview(bottomControlStackView)
+        bottomControlStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [bottomControlStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+             bottomControlStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+             bottomControlStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+             bottomControlStackView.heightAnchor.constraint(equalToConstant: 50)
+            
+            ])
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //backgroundColor doesn't show any color... why ?
-        //view.backgroundColor = .gray
+        setupBottomControls()
+        
         collectionView?.backgroundColor = .white
         //how to add stuff to cell register(CustomCell.self ...
         //collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
