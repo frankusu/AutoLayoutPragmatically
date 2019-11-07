@@ -21,8 +21,17 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
         let button = UIButton(type: .system)
         button.setTitle("PREV", for: .normal)
         button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handlePrev() {
+        print("Trying to go to prev page...")
+        let prevIndex = max(pageControl.currentPage - 1, 0)
+        let indexPath = IndexPath(item: prevIndex, section: 0)
+        pageControl.currentPage = prevIndex
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
     
     private let nextButton : UIButton = {
         let button = UIButton(type: .system)
@@ -40,11 +49,12 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
         pageControl.currentPage = nextIndex
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
-    private let pageControl : UIPageControl = {
+    //Err Instance member 'pages' cannot be used on type 'SwipingController' so add lazy
+    private lazy var pageControl : UIPageControl = {
         let pc = UIPageControl()
         pc.currentPageIndicatorTintColor = .red
         pc.pageIndicatorTintColor = .mainRed
-        pc.numberOfPages = 4
+        pc.numberOfPages = pages.count
         return pc
     }()
     
