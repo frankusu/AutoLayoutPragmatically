@@ -11,14 +11,32 @@ import UIKit
 
 class SwipingController : UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        
+        coordinator.animate(alongsideTransition: { (_) in
+            //invalidates the current layout and triggers a layout update
+            self.collectionViewLayout.invalidateLayout()
+            //problem. When we rotate, its off center. You have to click it for it to snap back
+            
+            
+            if self.pageControl.currentPage == 0 {
+                self.collectionView?.contentOffset = .zero
+            } else {
+                //scrolls the items in collectionView to its proper page
+                let indexPath = IndexPath(item: self.pageControl.currentPage, section: 0)
+                self.collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            }
+        }) { (_) in
+        
+        }
+    }
     
     let pages = [
         Page(imageName: "ramen_first", titleText: "Join us for delcious Ramen!", descriptionText: "Ramen (拉麺, ラーメン) are pulled noodles in soup broth that originated from Japan."),
         Page(imageName: "ramen_second", titleText: "Various flavors to choose from.", descriptionText: "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"),
         Page(imageName: "ramen_third", titleText: "Add toppings to make a bowl truly yours!", descriptionText: "Soft boiled eggs(aji tamago), Chashu (fatty braised pork), Chili Oil, Kikurage and many more" ),
-        Page(imageName: "ramen_first", titleText: "Join us for delcious Ramen!", descriptionText: "Ramen (拉麺, ラーメン) are pulled noodles in soup broth that originated from Japan."),
-        Page(imageName: "ramen_second", titleText: "Various flavors to choose from.", descriptionText: "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"),
-        Page(imageName: "ramen_third", titleText: "Add toppings to make a bowl truly yours!", descriptionText: "Soft boiled eggs(aji tamago), Chashu (fatty braised pork), Chili Oil, Kikurage and many more" )
+        Page(imageName: "ramen_fourth", titleText: "Come in to your local ramen store today!", descriptionText: ""),
     ]
     private let previousButton : UIButton = {
         let button = UIButton(type: .system)
