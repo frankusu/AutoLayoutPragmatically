@@ -15,6 +15,9 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
     let pages = [
         Page(imageName: "ramen_first", titleText: "Join us for delcious Ramen!", descriptionText: "Ramen (拉麺, ラーメン) are pulled noodles in soup broth that originated from Japan."),
         Page(imageName: "ramen_second", titleText: "Various flavors to choose from.", descriptionText: "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"),
+        Page(imageName: "ramen_third", titleText: "Add toppings to make a bowl truly yours!", descriptionText: "Soft boiled eggs(aji tamago), Chashu (fatty braised pork), Chili Oil, Kikurage and many more" ),
+        Page(imageName: "ramen_first", titleText: "Join us for delcious Ramen!", descriptionText: "Ramen (拉麺, ラーメン) are pulled noodles in soup broth that originated from Japan."),
+        Page(imageName: "ramen_second", titleText: "Various flavors to choose from.", descriptionText: "There are various flavours to choose from! Most popular ones are Shoyu, Shio, and Miso"),
         Page(imageName: "ramen_third", titleText: "Add toppings to make a bowl truly yours!", descriptionText: "Soft boiled eggs(aji tamago), Chashu (fatty braised pork), Chili Oil, Kikurage and many more" )
     ]
     private let previousButton : UIButton = {
@@ -74,6 +77,12 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
              bottomControlStackView.heightAnchor.constraint(equalToConstant: 50)
             
             ])
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x = targetContentOffset.pointee.x
+        pageControl.currentPage = Int(x / view.frame.width)
+        //print(x, view.frame.width, x / view.frame.width)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
