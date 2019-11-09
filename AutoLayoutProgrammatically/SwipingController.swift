@@ -11,26 +11,6 @@ import UIKit
 
 class SwipingController : UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        
-        coordinator.animate(alongsideTransition: { (_) in
-            //invalidates the current layout and triggers a layout update
-            self.collectionViewLayout.invalidateLayout()
-            //problem. When we rotate, its off center. You have to click it for it to snap back
-            
-            
-            if self.pageControl.currentPage == 0 {
-                self.collectionView?.contentOffset = .zero
-            } else {
-                //scrolls the items in collectionView to its proper page
-                let indexPath = IndexPath(item: self.pageControl.currentPage, section: 0)
-                self.collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            }
-        }) { (_) in
-        
-        }
-    }
     
     let pages = [
         Page(imageName: "ramen_first", titleText: "Join us for delcious Ramen!", descriptionText: "Ramen (拉麺, ラーメン) are pulled noodles in soup broth that originated from Japan."),
@@ -71,7 +51,7 @@ class SwipingController : UICollectionViewController,UICollectionViewDelegateFlo
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     //Err Instance member 'pages' cannot be used on type 'SwipingController' so add lazy
-    private lazy var pageControl : UIPageControl = {
+    lazy var pageControl : UIPageControl = {
         let pc = UIPageControl()
         pc.currentPageIndicatorTintColor = .red
         pc.pageIndicatorTintColor = .mainRed
