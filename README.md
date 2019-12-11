@@ -1,6 +1,8 @@
 # AutoLayoutPragmatically
 Ramen City | iOS study using auto layout without story boards
-<p align="left">
-  (img src="Demo/ramencity_uhd.gif" width="256" title="Portrait Demo")
+<p float="left">
+  <h3>Portrait Demo </h3>
+  <img src="Demo/ramencity_uhd.gif" width="150" title="Portrait Demo">
+  <h3>Landscape Demo </h3>
+  <img src="Demo/ramencity_horizontaluhd.gif" height="150" title="Landscape Demo">
 </p>
-//![](Demo/ramencity_uhd.gif width="256") ![](Demo/ramencity_horizontaluhd.gif width="512")
